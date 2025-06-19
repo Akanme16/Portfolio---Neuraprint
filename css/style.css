@@ -1,0 +1,621 @@
+/* --- Variables CSS Globales --- */
+:root {
+    --color-primary: #d99a63; /* Color principal (naranja/dorado) */
+    --color-primary-darker: #c08047; /* Un tono más oscuro para hovers/activos */
+    --color-background: #000000; /* Fondo principal negro */
+    --color-surface: #1a1a1a; /* Fondo para tarjetas o secciones ligeramente diferenciadas (opcional) */
+    --color-text: #f0f0f0;    /* Color de texto principal (blanco hueso) */
+    --color-text-secondary: #a0a0a0; /* Color de texto secundario (gris claro) */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+    --container-width: 1140px;
+    --header-height: 80px;
+}
+
+/* --- Reseteo Básico y Estilos Globales --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en enlaces internos */
+    font-size: 16px; /* Base para REM */
+}
+
+body {
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased; /* Mejora renderizado de fuentes en WebKit */
+    -moz-osx-font-smoothing: grayscale; /* Mejora renderizado de fuentes en Firefox */
+}
+
+/* --- Contenedor Principal --- */
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* --- Títulos y Párrafos --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.75em; /* Espacio debajo de los títulos */
+    color: var(--color-text); /* Títulos principales blancos */
+}
+
+h1 {
+    font-size: 3rem; /* Tamaño grande para el título principal */
+}
+h1 span {
+    color: var(--color-primary); /* Span dentro de H1 con color primario */
+}
+
+h2 {
+    font-size: 2.25rem; /* Títulos de sección */
+    text-align: center;
+    margin-bottom: 2em; /* Más espacio para títulos de sección */
+    position: relative;
+}
+/* Línea decorativa debajo de H2 */
+h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-primary);
+    margin: 0.5em auto 0;
+}
+
+
+p {
+    margin-bottom: 1em; /* Espacio debajo de los párrafos */
+    color: var(--color-text-secondary);
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover, a:focus {
+    color: var(--color-primary-darker);
+    text-decoration: underline; /* Sutil indicación de hover */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Evita espacio extra debajo de las imágenes */
+}
+
+/* --- Cabecera y Navegación --- */
+.site-header {
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo negro semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque para navegadores compatibles */
+    padding: 0 1em; /* Padding horizontal */
+    position: fixed; /* Fija la cabecera en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que esté por encima de otro contenido */
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre logo y nav */
+    align-items: center;
+    width: 100%; /* Ocupa todo el ancho del contenedor padre (.site-header) */
+}
+
+.logo img {
+    height: 40px; /* Ajusta la altura del logo según sea necesario */
+    width: auto;
+}
+.logo h1 { /* Si usas texto como logo */
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav ul li {
+    margin-left: 2em; /* Espacio entre elementos del menú */
+}
+
+.main-nav ul li a {
+    color: var(--color-text);
+    font-weight: 500;
+    font-family: var(--font-primary);
+    text-decoration: none;
+    padding: 0.5em 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+.main-nav ul li a::after { /* Subrayado sutil en hover */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+.main-nav ul li a:hover,
+.main-nav ul li a:focus,
+.main-nav ul li a.active-link { /* Clase para enlace activo (JS podría añadirla) */
+    color: var(--color-primary);
+}
+.main-nav ul li a:hover::after,
+.main-nav ul li a:focus::after,
+.main-nav ul li a.active-link::after {
+    width: 100%;
+}
+
+.main-nav .nav-cta {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main-nav .nav-cta:hover,
+.main-nav .nav-cta:focus {
+    background-color: var(--color-primary-darker);
+    color: var(--color-background); /* Mantener color de texto o ajustarlo */
+    text-decoration: none;
+}
+.main-nav .nav-cta::after { /* Quitar subrayado del CTA */
+    display: none;
+}
+
+
+/* --- Botón Hamburguesa --- */
+.hamburger {
+    display: none; /* Oculto por defecto en escritorio */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Encima del nav desplegable pero debajo de su overlay si lo tuviera */
+}
+.hamburger-box {
+    width: 30px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+}
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-text);
+    border-radius: 3px;
+    position: absolute;
+    transition-property: transform, background-color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
+}
+.hamburger-inner {
+    top: 50%;
+    transform: translateY(-50%);
+}
+.hamburger-inner::before,
+.hamburger-inner::after {
+    content: '';
+    display: block;
+}
+.hamburger-inner::before {
+    top: -10px;
+}
+.hamburger-inner::after {
+    bottom: -10px;
+}
+/* Estilo del hamburger cuando el menú está activo */
+.hamburger.is-active .hamburger-inner {
+    transform: rotate(45deg);
+    background-color: var(--color-primary); /* Cambia color al activarse */
+}
+.hamburger.is-active .hamburger-inner::before {
+    top: 0;
+    transform: rotate(-90deg);
+    background-color: var(--color-primary);
+}
+.hamburger.is-active .hamburger-inner::after {
+    bottom: 0;
+    opacity: 0; /* Desaparece la línea del medio */
+}
+
+/* --- Sección Hero --- */
+.hero-section {
+    padding-top: calc(var(--header-height) + 4rem); /* Espacio para la cabecera fija + extra */
+    padding-bottom: 4rem;
+    background-color: var(--color-background); /* Fondo negro por defecto */
+    /* Descomenta y ajusta la siguiente línea para una imagen de fondo */
+    background-image: url('../img/hero-visual-hd.jpg'); 
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    position: relative; /* Para el overlay */
+    scroll-margin-top: calc(var(--header-height) + 20px); /* Ajuste para anclaje */
+}
+
+/* Overlay para la sección hero si se usa una imagen de fondo */
+/* Se activa implícitamente si 'background-image' está activo para mejorar legibilidad del texto */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Aplicar overlay solo si hay una imagen de fondo. Podrías hacerlo más dinámico con JS si fuera necesario,
+    o asumir que si pones una imagen, querrás el overlay.
+    Para que el overlay sea condicional a la imagen, una opción es tener una clase adicional.
+    Por simplicidad, lo dejamos así, y si no hay imagen, este overlay sobre negro no cambia mucho.
+    Una alternativa es poner el background-color aquí: rgba(0, 0, 0, 0.6);
+    Y quitar el background-color de .hero-section si hay imagen.
+    */
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay oscuro semi-transparente */
+    z-index: 1; /* Detrás del contenido pero encima del fondo/imagen */
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    position: relative; /* Para que esté encima del overlay */
+    z-index: 2;
+}
+.hero-text {
+    flex-basis: 55%; /* Más espacio para el texto */
+}
+.hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5em;
+}
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5em;
+    color: var(--color-text); /* Texto del hero más claro */
+}
+.hero-visual {
+    flex-basis: 40%;
+    text-align: center; /* Centra la imagen si es más pequeña */
+}
+.hero-visual img {
+    max-width: 100%;
+    border-radius: 50%; /* Bordes redondeados para la imagen */
+    /* box-shadow: 0 0 30px rgba(var(--color-primary-rgb), 0.3); */ /* Necesitaría --color-primary-rgb definido */
+}
+
+
+/* --- Botón CTA (Call to Action) --- */
+.cta-button {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-background); /* Texto oscuro sobre fondo claro */
+    padding: 0.8em 1.8em;
+    font-family: var(--font-primary);
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px; /* Botón más redondeado */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 2px solid var(--color-primary); /* Borde del mismo color */
+}
+.cta-button:hover, .cta-button:focus {
+    background-color: var(--color-primary-darker);
+    border-color: var(--color-primary-darker);
+    color: var(--color-background);
+    transform: translateY(-2px); /* Ligero efecto de elevación */
+    text-decoration: none;
+}
+.cta-button.secondary { /* Estilo para botones secundarios */
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+.cta-button.secondary:hover, .cta-button.secondary:focus {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    border-color: var(--color-primary);
+}
+
+
+/* --- Secciones Generales --- */
+.services-section,
+.portfolio-section,
+.about-section,
+.contact-section {
+    padding: 4rem 0;
+    /* Aplicar scroll-margin-top para el anclaje correcto debido a la cabecera fija */
+    scroll-margin-top: calc(var(--header-height) + 0px); /* Ajusta el '20px' si necesitas más/menos espacio */
+}
+/* Alternar colores de fondo para las secciones si se desea */
+.services-section, .about-section {
+    background-color: var(--color-surface); /* Un negro un poco más claro */
+}
+
+
+/* --- Sección Servicios --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas */
+    gap: 2rem; /* Espacio entre tarjetas */
+}
+.service-card {
+    background-color: var(--color-background); /* Fondo oscuro para tarjetas */
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #222; /* Borde sutil */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 15px rgba(217, 154, 99, 0.2);
+}
+.service-card img {
+    max-height: 80px; /* Ajusta según tus imágenes/iconos */
+    margin: 0 auto 1.5rem;
+}
+.service-card h3 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5em;
+}
+
+
+/* --- Sección Portafolio --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+.portfolio-item {
+    position: relative;
+    overflow: hidden; /* Para el efecto de zoom en la imagen */
+    border-radius: 8px;
+    background-color: var(--color-surface); /* Fondo base */
+}
+.portfolio-item img {
+    width: 100%;
+    height: 250px; /* Altura fija para las imágenes de portafolio */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    transition: transform 0.4s ease-out;
+}
+.portfolio-item:hover img {
+    transform: scale(1.05); /* Zoom sutil al pasar el mouse */
+}
+.portfolio-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); /* Gradiente para legibilidad */
+    color: var(--color-text);
+    padding: 2rem 1rem 1rem; /* Más padding abajo */
+    transition: opacity 0.3s ease;
+}
+.portfolio-item:hover .portfolio-caption { /* Podrías hacer que aparezca en hover si prefieres */
+    /* opacity: 1; */
+}
+.portfolio-caption h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.25em;
+    color: var(--color-text);
+}
+.portfolio-caption p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+}
+.portfolio-link { /* Enlace que envuelve toda la tarjeta */
+    display: block;
+    text-decoration: none;
+}
+.portfolio-link:hover, .portfolio-link:focus {
+    text-decoration: none;
+}
+.portfolio-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* --- Sección Sobre Mí --- */
+.about-section .container {
+    max-width: 800px; /* Contenido más centrado y legible */
+    text-align: center;
+}
+.about-section p {
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+
+/* --- Sección Contacto --- */
+.contact-section {
+    text-align: center;
+}
+.contact-section p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color-text);
+}
+.contact-section .cta-button {
+    margin-top: 1.5rem;
+}
+.social-links {
+    margin-top: 2rem;
+}
+.social-links a {
+    display: inline-block;
+    margin: 0 0.75rem;
+    transition: transform 0.2s ease;
+}
+.social-links svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--color-text-secondary);
+    transition: fill 0.3s ease;
+}
+.social-links a:hover svg,
+.social-links a:focus svg {
+    fill: var(--color-primary);
+}
+.social-links a:hover,
+.social-links a:focus {
+    transform: translateY(-3px);
+    text-decoration: none;
+}
+
+
+/* --- Pie de Página --- */
+.site-footer {
+    background-color: var(--color-surface);
+    color: var(--color-text-secondary);
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+}
+.site-footer p {
+    margin-bottom: 0.25em;
+}
+.site-footer .heart {
+    color: var(--color-primary);
+}
+
+
+/* --- Estilos Responsivos (Mobile First Approach si se prefiere, aquí adaptando desde desktop) --- */
+
+/* Tablets y dispositivos más pequeños (ej: <= 992px) */
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column; /* Apila texto e imagen */
+        text-align: center;
+    }
+    .hero-text {
+        flex-basis: auto; /* Resetea base */
+        margin-bottom: 2rem;
+    }
+    .hero-visual {
+        flex-basis: auto;
+    }
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+}
+
+/* Teléfonos móviles (ej: <= 768px) */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 70px; /* Cabecera un poco más pequeña en móviles */
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; }
+
+    .site-header {
+        /* No es necesario cambiar mucho aquí ya que el .header-container lo maneja */
+    }
+
+    /* Mostrar botón hamburguesa y ocultar navegación principal */
+    .hamburger {
+        display: block; /* Muestra el botón hamburguesa */
+    }
+
+    .main-nav {
+        display: none; /* Oculta la navegación por defecto */
+        position: absolute;
+        top: var(--header-height); /* Se despliega justo debajo de la cabecera */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-background); /* Fondo oscuro para el menú desplegado */
+        border-top: 1px solid var(--color-surface); /* Línea divisoria sutil */
+        padding: 1em 0;
+        z-index: 999; /* Debajo del botón hamburguesa si es necesario, pero encima de otro contenido */
+    }
+    .main-nav.is-active {
+        display: block; /* Muestra el menú cuando está activo */
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* Apila los elementos del menú verticalmente */
+        align-items: center; /* Centra los elementos */
+    }
+
+    .main-nav ul li {
+        margin: 0; /* Quita márgenes laterales */
+        width: 100%;
+        text-align: center;
+    }
+
+    .main-nav ul li a {
+        display: block; /* Hace que el enlace ocupe todo el ancho */
+        padding: 1em; /* Más padding para facilitar el toque */
+        border-bottom: 1px solid var(--color-surface); /* Divisor entre ítems */
+    }
+    .main-nav ul li:last-child a {
+        border-bottom: none; /* Quita el borde del último elemento */
+    }
+    .main-nav ul li a:hover,
+    .main-nav ul li a:focus,
+    .main-nav ul li a.active-link {
+        background-color: var(--color-surface); /* Resaltado al pasar el mouse/tocar */
+    }
+    .main-nav ul li a::after { /* Ocultar subrayado en móvil */
+        display: none;
+    }
+    .main-nav .nav-cta { /* Estilo del CTA en menú móvil */
+        margin: 1em auto;
+        display: inline-block; /* Para que el padding funcione bien */
+        width: auto; /* No 100% como los otros links */
+    }
+
+
+    .hero-section {
+        padding-top: calc(var(--header-height) + 2rem);
+        padding-bottom: 2rem;
+        min-height: auto; /* Altura automática en móviles */
+    }
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+    .hero-text p {
+        font-size: 1rem;
+    }
+
+    .services-grid,
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Una columna en móviles */
+    }
+    .portfolio-item img {
+        height: 200px; /* Altura de imagen de portafolio en móviles */
+    }
+}
